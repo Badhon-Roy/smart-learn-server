@@ -11,6 +11,7 @@ const createCourseValidationSchema = z.object({
             z.object({
                 title: z.string().min(3, "Lesson title must be at least 3 characters long"),
                 videoUrl: z.string().url("Invalid video URL"),
+                isView: z.boolean().default(false)
             })
         ).min(1, "At least one lesson is required"),
         isApproved: z.boolean().default(false),

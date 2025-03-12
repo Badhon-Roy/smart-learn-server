@@ -17,6 +17,7 @@ const CourseSchema = new Schema<ICourse>(
             {
                 title: { type: String, required: true },
                 videoUrl: { type: String, required: true },
+                isView: { type: Boolean, default: false }
             },
         ],
         isApproved: { type: Boolean, default: false },

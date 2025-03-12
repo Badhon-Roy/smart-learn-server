@@ -10,6 +10,7 @@ export interface ICourse {
     lessons: {
         title: string;
         videoUrl: string;
+        isView: boolean;
     }[];
     isApproved: boolean;
     studentsEnrolled: Types.ObjectId[];
