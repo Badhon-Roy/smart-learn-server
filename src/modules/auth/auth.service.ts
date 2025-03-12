@@ -2,19 +2,20 @@ import config from "../../config";
 import User from "../user/user.model";
 import { createToken } from "./auth.utils";
 import { ILoginUser } from "./auth.interface";
-import jwt from "jsonwebtoken"
+import AppError from "../../errors/AppError";
 
-const loginUser = async(payload : ILoginUser)=>{
-    const user = await User.findOne({email : payload?.email})
-    if(!user){
-        throw new Error("You are not authorized!")
+const loginUser = async (payload: ILoginUser) => {
+    const user = await User.findOne({ email: payload?.email })
+    if (!user) {
+        throw new AppError(404, "User not found!")
     }
+    const isPasswordMatched = await User.isPasswordMatched(payload?.password, user?.password)
 
-    if(user?.password !== payload?.password){
-        throw new Error("Password doesn't matched!")
+    if (!isPasswordMatched) {
+        throw new AppError(403, "Password doesn't matched!")
     }
     const jwtPayload = {
-        userId : user?._id,
+        userId: user?._id,
         email: user?.email,
         role: user?.role
     }
@@ -27,7 +28,13 @@ const loginUser = async(payload : ILoginUser)=>{
         refreshToken
     }
 }
+const refreshToken = async(token :string)=>{
 
-export const AuthServices ={
-    loginUser
+}
+
+
+
+export const AuthServices = {
+    loginUser,
+    refreshToken
 }
