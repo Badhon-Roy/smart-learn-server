@@ -19,6 +19,7 @@ const CourseSchema = new Schema<ICourse>(
                 videoUrl: { type: String, required: true },
             },
         ],
+        isApproved: { type: Boolean, default: false },
         studentsEnrolled: [{ type: Schema.Types.ObjectId, ref: "User" }],
         rating: { type: Number, default: 0 },
         reviews: [

@@ -13,6 +13,7 @@ const createCourseValidationSchema = z.object({
                 videoUrl: z.string().url("Invalid video URL"),
             })
         ).min(1, "At least one lesson is required"),
+        isApproved: z.boolean().default(false),
         studentsEnrolled: z.array(z.string().regex(/^[a-fA-F0-9]{24}$/, "Invalid student ID")).optional(),
         rating: z.number().min(0).max(5).default(0),
         reviews: z.array(

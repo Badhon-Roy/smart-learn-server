@@ -11,6 +11,7 @@ export interface ICourse {
         title: string;
         videoUrl: string;
     }[];
+    isApproved: boolean;
     studentsEnrolled: Types.ObjectId[];
     rating: number;
     reviews: {

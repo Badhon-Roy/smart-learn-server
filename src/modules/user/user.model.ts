@@ -2,7 +2,6 @@ import mongoose, { Schema } from "mongoose";
 import { IUser, UserModel } from "./user.interface";
 import bcrypt from "bcrypt"
 import config from "../../config";
-import router from './../../routes/index';
 
 const UserSchema = new Schema<IUser, UserModel>(
   {
