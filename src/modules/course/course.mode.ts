@@ -23,7 +23,7 @@ const CourseSchema = new Schema<ICourse>(
         rating: { type: Number, default: 0 },
         reviews: [
             {
-                studentId: {
+                student: {
                     type: Schema.Types.ObjectId,
                     ref: "User",
                     required: true

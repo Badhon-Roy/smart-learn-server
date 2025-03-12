@@ -14,7 +14,7 @@ export interface ICourse {
     studentsEnrolled: Types.ObjectId[];
     rating: number;
     reviews: {
-        studentId: string;
+        student: Types.ObjectId;
         comment: string;
         rating: number;
     }[];

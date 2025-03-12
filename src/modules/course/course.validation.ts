@@ -1,6 +1,5 @@
 import { z } from "zod";
-
-export const courseSchema = z.object({
+const createCourseValidationSchema = z.object({
     body: z.object({
         title: z.string().min(3, "Title must be at least 3 characters long"),
         description: z.string().min(10, "Description must be at least 10 characters long"),
@@ -18,10 +17,14 @@ export const courseSchema = z.object({
         rating: z.number().min(0).max(5).default(0),
         reviews: z.array(
             z.object({
-                studentId: z.string().regex(/^[a-fA-F0-9]{24}$/, "Invalid student ID"),
+                student: z.string().regex(/^[a-fA-F0-9]{24}$/, "Invalid student ID"),
                 comment: z.string().min(5, "Comment must be at least 5 characters long"),
                 rating: z.number().min(1).max(5),
             })
         ).optional(),
     })
 });
+
+export const CourseValidation = {
+    createCourseValidationSchema
+}
