@@ -17,6 +17,8 @@ const loginUser = async (payload: ILoginUser) => {
     const jwtPayload = {
         userId: user?._id,
         email: user?.email,
+        name: user?.name,
+        photo: user?.photo,
         role: user?.role
     }
 
@@ -28,7 +30,7 @@ const loginUser = async (payload: ILoginUser) => {
         refreshToken
     }
 }
-const refreshToken = async(token :string)=>{
+const refreshToken = async (token: string) => {
 
 }
 

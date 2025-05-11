@@ -6,25 +6,65 @@ const createCourseIntoDB = async (courseData: ICourse) => {
     return course;
 }
 const getAllCoursesFromDB = async () => {
-    const courses = await CourseModel.find().populate("instructor").populate("studentsEnrolled").populate('reviews.student');
+    const courses = await CourseModel.find().populate("instructors.instructor").populate("studentsEnrolled").populate('reviews.student');
     return courses;
 };
+const getSingleCourseFromDB = async (id: string) => {
+    const course = await CourseModel.findById(id).populate("instructors.instructor").populate("studentsEnrolled").populate('reviews.student');
+    return course;
+};
 
-const updateCourseIntoDB = async(id : string, data : ICourse)=>{
-    const result = await CourseModel.findByIdAndUpdate(id, data,{
-        new : true
+const updateCourseIntoDB = async (id: string, data: ICourse) => {
+    const result = await CourseModel.findByIdAndUpdate(id, data, {
+        new: true
     })
     return result;
 }
 
-const deleteCourseFromDB = async(id : string)=>{
+const deleteCourseFromDB = async (id: string) => {
     const result = await CourseModel.findByIdAndDelete(id)
     return result;
 }
 
-export const CourseServices ={
+const addLessonToCourseFromDB = async (
+    courseId: string,
+    lesson: {
+        title: string;
+        videoUrl: string;
+        isView?: boolean;
+        duration?: string;
+    }
+) => {
+    const updatedCourse = await CourseModel.findByIdAndUpdate(
+        courseId,
+        { $push: { lessons: lesson } },
+        { new: true }
+    );
+
+    return updatedCourse;
+};
+
+const updateCourseApproval = async (courseId: string, isApproved: boolean) => {
+
+  const updatedCourse = await CourseModel.findByIdAndUpdate(
+    courseId,
+    { isApproved },
+    { new: true }
+  );
+
+  if (!updatedCourse) {
+    throw new Error("Course not found");
+  }
+
+  return updatedCourse;
+};
+
+export const CourseServices = {
     createCourseIntoDB,
     getAllCoursesFromDB,
+    getSingleCourseFromDB,
     updateCourseIntoDB,
-    deleteCourseFromDB
+    deleteCourseFromDB,
+    addLessonToCourseFromDB,
+    updateCourseApproval
 }

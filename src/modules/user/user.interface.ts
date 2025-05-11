@@ -4,6 +4,7 @@ import { USER_ROLE } from "./user.constant";
 
 export interface IUser extends Document {
   name: string;
+  photo: string;
   email: string;
   password: string;
   role: "student" | "instructor" | "admin";
