@@ -96,6 +96,18 @@ const updateCourseApproval = catchAsync(async (req, res) => {
     });
 })
 
+const updateCourseStatus = catchAsync(async (req, res) => {
+    const { courseId } = req.params;
+    const { status } = req.body;
+    const updatedCourse = await CourseServices.updateCourseStatus(courseId, status);
+    res.status(200).json({
+        success: true,
+        message: `Course status updated successfully`,
+        data: updatedCourse,
+    });
+}
+);
+
 export const CourseControllers = {
     createCourseController,
     getAllCoursesController,
@@ -103,5 +115,6 @@ export const CourseControllers = {
     updateSingleCourse,
     deleteSingleCourse,
     addLesson,
-    updateCourseApproval    
+    updateCourseApproval,
+    updateCourseStatus    
 }

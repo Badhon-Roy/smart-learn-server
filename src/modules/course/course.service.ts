@@ -46,18 +46,25 @@ const addLessonToCourseFromDB = async (
 
 const updateCourseApproval = async (courseId: string, isApproved: boolean) => {
 
-  const updatedCourse = await CourseModel.findByIdAndUpdate(
-    courseId,
-    { isApproved },
-    { new: true }
-  );
+    const updatedCourse = await CourseModel.findByIdAndUpdate(
+        courseId,
+        { isApproved },
+        { new: true }
+    );
 
-  if (!updatedCourse) {
-    throw new Error("Course not found");
-  }
+    if (!updatedCourse) {
+        throw new Error("Course not found");
+    }
 
-  return updatedCourse;
+    return updatedCourse;
 };
+
+const updateCourseStatus = async (courseId: string, status: "Ongoing" | "Upcoming" | "Completed") => {
+    const updatedCourse = await CourseModel.findByIdAndUpdate(courseId, { status }, { new: true });
+    if (!updatedCourse) {
+        throw new Error("Course not found");
+    }
+}
 
 export const CourseServices = {
     createCourseIntoDB,
@@ -66,5 +73,6 @@ export const CourseServices = {
     updateCourseIntoDB,
     deleteCourseFromDB,
     addLessonToCourseFromDB,
-    updateCourseApproval
+    updateCourseApproval,
+    updateCourseStatus
 }
