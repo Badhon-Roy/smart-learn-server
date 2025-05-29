@@ -15,6 +15,12 @@ const CourseSchema = new Schema<ICourse>(
             subject: { type: String, required: true }
         }],
         price: { type: Number, required: true },
+        category: {
+            type: Schema.Types.ObjectId,
+            ref: "Category",
+            required: true
+        },
+        duration: { type: String, required: true },
         discountPrice: { type: Number },
         class: { type: String, required: true },
         subject: [{

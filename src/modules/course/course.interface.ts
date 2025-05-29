@@ -11,6 +11,8 @@ export interface ICourse {
     price: number;
     discountPrice?: number;
     class: string;
+    category: Types.ObjectId;
+    duration: string;
     subject: {
         name: string
     }[];

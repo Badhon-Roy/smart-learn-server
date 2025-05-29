@@ -6,11 +6,11 @@ const createCourseIntoDB = async (courseData: ICourse) => {
     return course;
 }
 const getAllCoursesFromDB = async () => {
-    const courses = await CourseModel.find().populate("instructors.instructor").populate("studentsEnrolled").populate('reviews.student');
+    const courses = await CourseModel.find().populate("instructors.instructor").populate("category").populate("studentsEnrolled").populate('reviews.student');
     return courses;
 };
 const getSingleCourseFromDB = async (id: string) => {
-    const course = await CourseModel.findById(id).populate("instructors.instructor").populate("studentsEnrolled").populate('reviews.student');
+    const course = await CourseModel.findById(id).populate("instructors.instructor").populate("category").populate("studentsEnrolled").populate('reviews.student');
     return course;
 };
 

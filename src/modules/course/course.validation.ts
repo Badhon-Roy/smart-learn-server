@@ -10,6 +10,8 @@ export const createCourseValidationSchema = z.object({
         subject: z.string().min(5, "Subject name must be at least 2 characters long"),
       })
     ),
+    category: z.string().regex(/^[a-fA-F0-9]{24}$/, "Invalid category ID"),
+    duration: z.string().min(1, "Duration is required"),
     price: z.number().min(0, "Price must be a positive number"),
     discountPrice: z.number().min(0, "Discount price must be a positive number").optional(),
 

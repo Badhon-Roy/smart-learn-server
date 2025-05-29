@@ -57,6 +57,17 @@ const deleteSingleUser = catchAsync(async (req, res) => {
     });
 });
 
+const updateUserRole = catchAsync(async(req,res)=>{
+    const {id} = req.params;
+    const {role} = req.body;
+    const user = await UserServices.updateUserRole(id, role);
+    res.status(200).json({          
+        success: true,
+        message: "User role updated successfully",
+        data: user,
+    });
+})
+
 
 
 export const UserControllers = {
@@ -64,5 +75,6 @@ export const UserControllers = {
     getAllUsers,
     getSingleUser,
     updateSingleUser,
-    deleteSingleUser
+    deleteSingleUser,
+    updateUserRole
 }
