@@ -1,6 +1,6 @@
 import AppError from "../../errors/AppError";
 import catchAsync from "../../utils/catchAsync";
-import CourseModel from "./course.mode";
+import CourseModel from "./course.model";
 import { CourseServices } from "./course.service";
 
 
@@ -90,9 +90,9 @@ const updateCourseApproval = catchAsync(async (req, res) => {
     const updatedCourse = await CourseServices.updateCourseApproval(courseId, isApproved);
 
     res.status(200).json({
-    success: true,
-      message: `Course approval updated successfully`,
-      data: updatedCourse,
+        success: true,
+        message: `Course approval updated successfully`,
+        data: updatedCourse,
     });
 })
 
@@ -116,5 +116,5 @@ export const CourseControllers = {
     deleteSingleCourse,
     addLesson,
     updateCourseApproval,
-    updateCourseStatus    
+    updateCourseStatus
 }
