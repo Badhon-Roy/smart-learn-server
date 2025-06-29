@@ -12,7 +12,7 @@ const getAllUserFromDB = async () => {
     return result;
 }
 const getSingleUserFromDB = async (id: string) => {
-    const result = await User.findById(id)
+    const result = await User.findById(id).populate('enrolledCourses');
     return result;
 }
 const updateUserIntoDB = async (id: string, data: IUser) => {

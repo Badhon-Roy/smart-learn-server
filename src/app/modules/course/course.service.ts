@@ -1,6 +1,7 @@
 import { ICourse } from "./course.interface";
 import CourseModel from "./course.model";
 
+
 const createCourseIntoDB = async (courseData: ICourse) => {
     const course = await CourseModel.create(courseData);
     return course;

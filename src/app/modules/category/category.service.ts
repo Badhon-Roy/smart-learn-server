@@ -1,7 +1,6 @@
+import { ICategory } from "./category.interface";
+import Category from "./category.model";
 
-import { CategorySearchableFields } from './category.constant';
-import { ICategory } from './category.interface';
-import Category from './category.model';
 
 //* create category into database
 const createCategoryIntoDB = async (category: ICategory) => {
