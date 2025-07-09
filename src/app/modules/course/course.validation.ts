@@ -7,7 +7,7 @@ export const createCourseValidationSchema = z.object({
     instructors: z.array(
       z.object({
         instructor: z.string().regex(/^[a-fA-F0-9]{24}$/, "Invalid instructor ID"),
-        subject: z.string().min(5, "Subject name must be at least 2 characters long"),
+        subject: z.string().min(2, "Subject name must be at least 2 characters long"),
       })
     ),
     category: z.string().regex(/^[a-fA-F0-9]{24}$/, "Invalid category ID"),
